@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!-- MeharFlow website - Copyright (c) 2026 Mehar Bilal. All rights reserved. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What's New - MeharFlow</title>
+  <meta name="description" content="Release notes for MeharFlow Batch Studio, the Chrome extension for batch prompting in Flow.">
+  <link rel="icon" href="icon128.png">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .release { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 24px; margin: 0 0 18px; }
+    .release h2 { margin: 0; font-size: 20px; text-align: left; }
+    .release .when { color: var(--muted); font-size: 13.5px; margin: 4px 0 14px; }
+    .release ul { margin: 0; padding-left: 20px; }
+    .release li { margin: 6px 0; }
+    .release .tag { display: inline-block; margin-left: 8px; padding: 2px 9px; border-radius: 999px; font-size: 11px; font-weight: 700; vertical-align: middle;
+      color: #ffb070; background: rgba(255, 122, 26, 0.12); border: 1px solid rgba(255, 122, 26, 0.3); text-transform: uppercase; letter-spacing: 0.4px; }
+  </style>
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="index.html"><span class="logo"><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M13.2 2 4.5 13.6h6.1L9.8 22l8.7-11.6h-6.1z"/></svg></span><span>Mehar<span class="flow">Flow</span></span></a>
+</div></header>
+
+<main class="legal">
+  <h1>What's new</h1>
+  <div class="updated">MeharFlow is updated whenever Flow changes, and as creators ask for features.</div>
+
+  <div class="release">
+    <h2>Version 1.0.1 <span class="tag">Coming soon</span></h2>
+    <div class="when">In testing</div>
+    <ul>
+      <li><strong>🎬 Animate button</strong> on image results - sends the image to Flow's video panel as the first frame and puts its shot number in the SHOT box, ready for that shot's video prompt.</li>
+      <li><strong>One-click next shot</strong> - new ◀ ▶ buttons move the whole shot range forward or back in one click.</li>
+      <li><strong>Exact single-shot runs</strong> - a range of one shot (77 to 77) now sends only that shot, not its sub-shots.</li>
+      <li><strong>Memory that survives a reinstall</strong> - shot records, settings and references are kept in a backup file in your series folder and restored automatically.</li>
+      <li><strong>Safer downloads</strong> - if Flow's 2K/4K menu fails, the original size is saved under the right shot name instead of nothing.</li>
+      <li><strong>Page check at Start</strong> - if Flow changes its page, MeharFlow stops before sending anything and says exactly what changed.</li>
+      <li>The download button on each result sits above Flow's own Reuse prompt button, so both can be clicked.</li>
+    </ul>
+  </div>
+
+  <div class="release">
+    <h2>Version 1.0.0</h2>
+    <div class="when">September 2026 - first release</div>
+    <ul>
+      <li>Batch prompts from a linked .docx or .csv shot list, with a shot range and a pause every few shots.</li>
+      <li><strong>Single Prompt</strong> - paste one prompt and send it straight to Flow.</li>
+      <li>Reference images tagged by exact name as chips (characters, locations, props).</li>
+      <li>Video workflow: prompt, speaker and length prepared - your start frame is never touched, you press Generate.</li>
+      <li>Downloads saved into your episode folders, named by shot number.</li>
+    </ul>
+  </div>
+
+  <p><a href="index.html">← Back to MeharFlow</a></p>
+</main>
+
+<footer class="site"><div class="wrap">
+  <span>© 2026 Mehar Bilal. All rights reserved.</span>
+  <nav><a href="changelog.html">What's new</a><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="refund.html">Refunds</a><a href="index.html">Home</a></nav>
+  <span class="note">MeharFlow Batch Studio is an independent tool and is not affiliated with or endorsed by Google.</span>
+</div></footer>
+</body>
+</html>
