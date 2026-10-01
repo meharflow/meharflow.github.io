@@ -1,0 +1,103 @@
+/* MeharFlow website - Copyright (c) 2026 Mehar Bilal. All rights reserved. */
+/* 3D layer on top of style.css. Only the home page loads this file. */
+
+/* Animated background glow */
+.bg-orbs { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+.bg-orbs span {
+  position: absolute; width: 46vmax; height: 46vmax; border-radius: 50%;
+  filter: blur(90px); opacity: 0.16; animation: drift 26s ease-in-out infinite alternate;
+}
+.bg-orbs span:nth-child(1) { background: #ff7a1a; top: -18vmax; left: -12vmax; }
+.bg-orbs span:nth-child(2) { background: #f25c05; bottom: -22vmax; right: -14vmax; animation-delay: -9s; opacity: 0.12; }
+.bg-orbs span:nth-child(3) { background: #5a6cff; top: 40%; left: 55%; width: 30vmax; height: 30vmax; opacity: 0.07; animation-delay: -16s; }
+@keyframes drift {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(6vmax, 4vmax) scale(1.12); }
+}
+body { background: transparent; }
+html { background: var(--bg); }
+
+/* Hero: text left, 3D right */
+.hero.hero-3d {
+  display: grid; grid-template-columns: 1.05fr 1fr; align-items: center; gap: 24px;
+  text-align: left; padding: 56px 20px 40px; min-height: calc(100vh - 64px); max-height: 860px;
+}
+.hero-3d h1 { font-size: clamp(32px, 4.4vw, 50px); }
+.hero-3d p.lead { margin-left: 0; }
+.hero-3d .cta { justify-content: flex-start; }
+.hero-stage { position: relative; height: min(560px, 62vh); min-height: 360px; }
+.hero-stage canvas { position: absolute; inset: 0; width: 100% !important; height: 100% !important; display: block; }
+
+/* Static fallback shown until (or instead of) WebGL */
+.hero-fallback {
+  position: absolute; inset: 0; display: grid; place-items: center; transition: opacity 0.6s;
+}
+.hero-fallback .orb {
+  width: 180px; height: 180px; border-radius: 40px; display: grid; place-items: center;
+  background: var(--grad); transform: rotate(-8deg);
+  box-shadow: 0 30px 90px rgba(255, 122, 26, 0.45), inset 0 2px 0 rgba(255, 255, 255, 0.35);
+}
+.hero-stage.is-live .hero-fallback { opacity: 0; }
+
+.hero-stats { display: flex; gap: 22px; margin-top: 28px; color: var(--muted); font-size: 13.5px; flex-wrap: wrap; }
+.hero-stats b { color: var(--text); display: block; font-size: 18px; }
+
+/* Tilt cards with a cursor-following glow */
+.tilt {
+  --rx: 0deg; --ry: 0deg; --mx: 50%; --my: 50%;
+  position: relative; transform: perspective(900px) rotateX(var(--rx)) rotateY(var(--ry));
+  transition: transform 0.25s ease-out, border-color 0.25s, box-shadow 0.25s;
+  transform-style: preserve-3d; will-change: transform;
+}
+.tilt::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0;
+  background: radial-gradient(320px circle at var(--mx) var(--my), rgba(255, 122, 26, 0.16), transparent 60%);
+  transition: opacity 0.25s;
+}
+.tilt:hover { border-color: rgba(255, 122, 26, 0.45); box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45); }
+.tilt:hover::after { opacity: 1; }
+.card.tilt h3, .card.tilt .ico { transform: translateZ(24px); }
+
+/* Glass cards */
+.card, .step, .faq details {
+  background: linear-gradient(180deg, rgba(28, 33, 42, 0.72), rgba(18, 21, 27, 0.72));
+  backdrop-filter: blur(8px);
+}
+.card .ico {
+  width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center;
+  background: rgba(255, 122, 26, 0.1); border: 1px solid rgba(255, 122, 26, 0.25);
+}
+
+/* Screenshots float in perspective */
+.shot.tilt { border-style: solid; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5); }
+
+/* Scroll reveal */
+.reveal { opacity: 0; translate: 0 26px; transition: opacity 0.7s ease, translate 0.7s ease, transform 0.25s ease-out, border-color 0.25s, box-shadow 0.25s; }
+.reveal.in { opacity: 1; translate: 0 0; }
+.grid .reveal:nth-child(2), .steps .reveal:nth-child(2) { transition-delay: 0.08s; }
+.grid .reveal:nth-child(3), .steps .reveal:nth-child(3) { transition-delay: 0.16s; }
+.grid .reveal:nth-child(4), .steps .reveal:nth-child(4) { transition-delay: 0.24s; }
+.grid .reveal:nth-child(5) { transition-delay: 0.32s; }
+.grid .reveal:nth-child(6) { transition-delay: 0.4s; }
+
+/* Shine on the main button */
+.btn { position: relative; overflow: hidden; }
+.btn:not(.ghost)::before {
+  content: ""; position: absolute; top: 0; left: -60%; width: 40%; height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transform: skewX(-20deg); animation: shine 4.5s ease-in-out infinite;
+}
+@keyframes shine { 0%, 70% { left: -60%; } 100% { left: 130%; } }
+
+@media (max-width: 860px) {
+  .hero.hero-3d { grid-template-columns: 1fr; text-align: center; min-height: 0; max-height: none; padding-top: 40px; }
+  .hero-3d p.lead { margin-left: auto; }
+  .hero-3d .cta, .hero-stats { justify-content: center; }
+  .hero-stage { height: 340px; min-height: 0; order: -1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-orbs span, .btn::before { animation: none; }
+  .reveal { opacity: 1; translate: 0 0; transition: none; }
+  .tilt { transition: none; }
+}
