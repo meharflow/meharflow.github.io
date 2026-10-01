@@ -17,29 +17,27 @@
 body { background: transparent; }
 html { background: var(--bg); }
 
-/* Hero: text left, 3D right */
-.hero.hero-3d {
-  display: grid; grid-template-columns: 1.05fr 1fr; align-items: center; gap: 24px;
-  text-align: left; padding: 56px 20px 40px; min-height: calc(100vh - 64px); max-height: 860px;
-}
-.hero-3d h1 { font-size: clamp(32px, 4.4vw, 50px); }
-.hero-3d p.lead { margin-left: 0; }
-.hero-3d .cta { justify-content: flex-start; }
-.hero-stage { position: relative; height: min(560px, 62vh); min-height: 360px; }
+/* Hero: text on top, 3D product window below */
+.hero.hero-3d { text-align: center; padding: 44px 20px 8px; max-width: 1240px; }
+.hero-3d h1 { margin-top: 14px; }
+.hero-3d p.lead { margin-bottom: 24px; }
+.hero-copy { max-width: 760px; margin: 0 auto; }
+.hero-3d .hero-stats { justify-content: center; }
+.hero-stage { position: relative; width: 100%; aspect-ratio: 2.2 / 1; max-height: 560px; margin: 8px auto 0; }
 .hero-stage canvas { position: absolute; inset: 0; width: 100% !important; height: 100% !important; display: block; }
 
-/* Static fallback shown until (or instead of) WebGL */
+/* Static fallback: the real screenshot in a tilted frame */
 .hero-fallback {
-  position: absolute; inset: 0; display: grid; place-items: center; transition: opacity 0.6s;
+  position: absolute; inset: 0; display: grid; place-items: center; perspective: 1400px; transition: opacity 0.6s;
 }
-.hero-fallback .orb {
-  width: 180px; height: 180px; border-radius: 40px; display: grid; place-items: center;
-  background: var(--grad); transform: rotate(-8deg);
-  box-shadow: 0 30px 90px rgba(255, 122, 26, 0.45), inset 0 2px 0 rgba(255, 255, 255, 0.35);
+.hero-fallback img {
+  width: 76%; height: auto; border-radius: 14px; border: 1px solid var(--line);
+  transform: rotateX(8deg) rotateY(-10deg);
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6), 0 0 80px rgba(255, 122, 26, 0.18);
 }
-.hero-stage.is-live .hero-fallback { opacity: 0; }
+.hero-stage.is-live .hero-fallback { opacity: 0; pointer-events: none; }
 
-.hero-stats { display: flex; gap: 22px; margin-top: 28px; color: var(--muted); font-size: 13.5px; flex-wrap: wrap; }
+.hero-stats { display: flex; gap: 22px; margin-top: 22px; color: var(--muted); font-size: 13.5px; flex-wrap: wrap; }
 .hero-stats b { color: var(--text); display: block; font-size: 18px; }
 
 /* Tilt cards with a cursor-following glow */
@@ -90,10 +88,10 @@ html { background: var(--bg); }
 @keyframes shine { 0%, 70% { left: -60%; } 100% { left: 130%; } }
 
 @media (max-width: 860px) {
-  .hero.hero-3d { grid-template-columns: 1fr; text-align: center; min-height: 0; max-height: none; padding-top: 40px; }
-  .hero-3d p.lead { margin-left: auto; }
-  .hero-3d .cta, .hero-stats { justify-content: center; }
-  .hero-stage { height: 340px; min-height: 0; order: -1; }
+  .hero.hero-3d { padding-top: 40px; }
+  .hero-stage { aspect-ratio: 1.45 / 1; margin-top: 8px; }
+  .hero-stats { gap: 16px; }
+  .hero-fallback img { width: 94%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
