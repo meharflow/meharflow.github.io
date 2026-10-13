@@ -121,7 +121,7 @@ html { background: var(--bg); }
 .story-steps h3 { margin: 3px 0 4px; font-size: 16px; }
 .story-steps p { margin: 0; color: var(--muted); font-size: 14px; }
 
-.story-stage-wrap { position: relative; width: 100%; }
+.story-stage-wrap { position: relative; width: 100%; overflow: clip; }
 .story-stage { position: absolute; left: 0; top: 0; width: 960px; height: 600px; transform-origin: 0 0; font-size: 13px; }
 .story-stage > * { position: absolute; }
 
